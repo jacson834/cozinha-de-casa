@@ -89,7 +89,7 @@
         
         /* Header */
         header {
-            background-color: white;
+            background-color: rgb(0, 0, 0);
             box-shadow: var(--shadow);
             position: fixed;
             width: 100%;
@@ -113,8 +113,8 @@
             align-items: center;
         }
         
-        .logo i {
-            margin-right: 10px;
+        .logo img {
+            height: 45px;
         }
         
         .nav-links {
@@ -128,7 +128,7 @@
         
         .nav-links a {
             text-decoration: none;
-            color: var(--dark);
+            color: white;
             font-weight: 500;
             transition: var(--transition);
         }
@@ -137,6 +137,19 @@
             color: var(--primary);
         }
         
+        .nav-btn a {
+            background: var(--primary);
+            padding: 10px 22px;
+            border-radius: 50px;
+            color: white;
+        }
+
+        .nav-btn a:hover {
+            background: var(--primary-dark);
+            color: white;
+            transform: translateY(-2px);
+        }
+
         .mobile-menu {
             display: none;
             font-size: 24px;
@@ -580,7 +593,28 @@
         
         @media (max-width: 768px) {
             .nav-links {
-                display: none;
+                display: none; /* Oculto por padrão no mobile */
+                flex-direction: column;
+                position: absolute;
+                top: 100%; /* Posiciona abaixo do header */
+                left: 0;
+                width: 100%;
+                background-color: rgb(0, 0, 0);
+                padding: 10px 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            }
+
+            .nav-links.active {
+                display: flex; /* Exibe o menu quando a classe 'active' está presente */
+            }
+
+            .nav-links li {
+                margin: 0;
+                text-align: center;
+            }
+            .nav-links a {
+                padding: 15px;
+                display: block;
             }
             
             .mobile-menu {
@@ -634,13 +668,14 @@
     <header>
         <div class="container">
             <nav class="navbar">
-                <a href="#" class="logo"><i class="fas fa-utensils"></i> Cozinha de Casa</a>
+                <a href="#" class="logo"><img src="logo.png" alt="Logo Cozinha de Casa"></a>
                 <ul class="nav-links">
                     <li><a href="#sobre">Sobre</a></li>
                     <li><a href="#etapas">Etapas</a></li>
                     <li><a href="#cronograma">Cronograma</a></li>
                     <li><a href="#inscricao">Inscrição</a></li>
                     <li><a href="#faq">FAQ</a></li>
+                    <li><a href="https://pimentabueno.ro.gov.br/uploads/arquivo/REGULAMENTO_COZINHA_DE_CASA_2025_REVISADO.pdf" target="_blank" rel="noopener noreferrer">Regulamento</a></li>
                 </ul>
                 <div class="mobile-menu">
                     <i class="fas fa-bars"></i>
@@ -653,7 +688,7 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Concurso Culinário Cozinha de Casa</h1>
+                <h1>Concurso Gastronômico Cozinha de Casa</h1>
                 <p>Mostre seu talento na cozinha e concorra a prêmios incríveis! Uma competição para chefs amadores que amam cozinhar em casa.</p>
                 
                 <div class="countdown">
@@ -689,7 +724,7 @@
             <h2 class="section-title">Sobre o Concurso</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>O Concurso Culinário "Cozinha de Casa" é uma iniciativa para descobrir e premiar talentos culinários entre os moradores de Pimenta Bueno. Queremos valorizar a culinária caseira e descobrir os melhores chefs amadores da região.</p>
+                    <p>O Concurso Gastronômico "Cozinha de Casa" é uma iniciativa para descobrir e premiar talentos culinários entre os moradores de Pimenta Bueno. Queremos valorizar a culinária caseira e descobrir os melhores chefs amadores da região.</p>
                     <p>Esta competição é para todos que amam cozinhar e desejam mostrar suas habilidades na preparação de pratos deliciosos no conforto de suas próprias cozinhas.</p>
                     
                     <h3>Quem pode participar?</h3>
@@ -938,6 +973,7 @@
                         <li><a href="#cronograma"><i class="fas fa-chevron-right"></i> Cronograma</a></li>
                         <li><a href="#inscricao"><i class="fas fa-chevron-right"></i> Inscrição</a></li>
                         <li><a href="#faq"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                        <li><a href="https://pimentabueno.ro.gov.br/uploads/arquivo/REGULAMENTO_COZINHA_DE_CASA_2025_REVISADO.pdf" target="_blank" rel="noopener noreferrer"><i class="fas fa-file-alt"></i> Regulamento</a></li>
                     </ul>
                 </div>
                 
@@ -952,7 +988,7 @@
             </div>
             
             <div class="copyright">
-                &copy; 2025 Concurso Culinário Cozinha de Casa. Todos os direitos reservados.
+                &copy; 2025 Concurso Gastronômico Cozinha de Casa. Todos os direitos reservados.
             </div>
         </div>
     </footer>
@@ -1034,13 +1070,17 @@
         const navLinks = document.querySelector('.nav-links');
         
         mobileMenu.addEventListener('click', () => {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            // Adiciona ou remove a classe 'active' para mostrar/ocultar o menu
+            navLinks.classList.toggle('active');
         });
         
         // Close mobile menu when clicking a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
-                navLinks.style.display = 'none';
+                // Fecha o menu mobile se ele estiver aberto
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                }
             });
         });
     </script>
