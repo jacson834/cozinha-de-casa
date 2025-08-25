@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Cozinha de Casa | Concurso Culinário</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -16,6 +16,8 @@
             --light: #ecf0f1;
             --gray: #95a5a6;
             --success: #27ae60;
+            --black: #000;
+            --body-bg: #f9f9f9;
             --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
         }
@@ -30,7 +32,7 @@
             font-family: 'Poppins', sans-serif;
             line-height: 1.6;
             color: var(--dark);
-            background-color: #f9f9f9;
+            background-color: var(--body-bg);
             overflow-x: hidden;
         }
         
@@ -90,7 +92,7 @@
         
         /* Header */
         header {
-            background-color: rgb(0, 0, 0);
+            background-color: var(--black);
             box-shadow: var(--shadow);
             position: fixed;
             width: 100%;
@@ -155,17 +157,20 @@
             display: none;
             font-size: 24px;
             cursor: pointer;
+            background: transparent;
+            border: none;
+            color: white;
         }
         
         /* Hero Section */
         .hero {
             background: linear-gradient(135deg, rgba(231, 76, 60, 0.9) 0%, rgba(243, 156, 18, 0.9) 100%), url('https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3') no-repeat center center/cover;
-            height: 100vh;
+            height: 125vh;
             display: flex;
             align-items: center;
             color: white;
             text-align: center;
-            padding-top: 80px;
+            padding-top: 90px;
         }
         
         .hero-content {
@@ -343,6 +348,38 @@
             margin-right: 10px;
         }
         
+        .video-tutorial {
+            margin-top: 30px;
+        }
+
+        .video-tutorial h4 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            color: var(--dark);
+        }
+
+        .video-responsive-wrapper {
+            position: relative;
+            /* Proporção 16:9 para se alinhar com o player do Google Drive */
+            padding-bottom: 56.25%; 
+            height: 0;
+            overflow: hidden;
+            max-width: 360px; /* Limita a largura para um tamanho razoável */
+            margin: 0 auto;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            background-color: #000;
+        }
+
+        .video-responsive-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
         /* Schedule */
         .schedule-tabs {
             display: flex;
@@ -593,6 +630,10 @@
         }
         
         @media (max-width: 768px) {
+            .hero {
+                padding-top: 100px;
+            }
+
             .nav-links {
                 display: none; /* Oculto por padrão no mobile */
                 flex-direction: column;
@@ -600,7 +641,7 @@
                 top: 100%; /* Posiciona abaixo do header */
                 left: 0;
                 width: 100%;
-                background-color: rgb(0, 0, 0);
+                background-color: var(--black);
                 padding: 10px 0;
                 box-shadow: 0 5px 10px rgba(0,0,0,0.2);
             }
@@ -678,9 +719,9 @@
                     <li><a href="#faq">FAQ</a></li>
                     <li><a href="https://pimentabueno.ro.gov.br/uploads/arquivo/REGULAMENTO_COZINHA_DE_CASA_2025_REVISADO.pdf" target="_blank" rel="noopener noreferrer">Regulamento</a></li>
                 </ul>
-                <div class="mobile-menu">
+                <button class="mobile-menu" aria-label="Abrir menu de navegação" aria-expanded="false">
                     <i class="fas fa-bars"></i>
-                </div>
+                </button>
             </nav>
         </div>
     </header>
@@ -765,6 +806,16 @@
                                 <li>Prato de livre escolha do participante</li>
                                 <li>Vídeo inédito e produzido para o concurso</li>
                             </ul>
+                        </div>
+                        <div class="video-tutorial">
+                            <h4>Veja como gravar seu vídeo:</h4>
+                            <div class="video-responsive-wrapper">
+                                <iframe 
+                                    src="https://drive.google.com/file/d/1Qh9p2_mAm9NT4sA1uVh3uB-wnFuCzAUg/preview" 
+                                    allow="autoplay; fullscreen" 
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -881,7 +932,7 @@
         <div class="container">
             <h2 class="section-title">Faça Sua Inscrição</h2>
             <div class="registration-box">
-                <p>As inscrições estão abertas de <span class="highlight">15 de agosto a 15 de setembro</span> de 2025, ou até o preenchimento das 20 vagas disponíveis.</p>
+                <p>As inscrições estão abertas de <span class="highlight">15 de agosto a 15 de setembro</span> de 2025, serão selecionados 5 participantes, havendo algum impedimento e/ou desistência, a vaga será liberada e selecionado o próximo da fila, totalizando as 20 vagas disponíveis.</p>
                 
                 <div class="deadline">Vagas Limitadas!</div>
                 
@@ -981,8 +1032,8 @@
                 <div class="footer-column">
                     <h3>Contato</h3>
                     <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-envelope"></i> autarquiamect@pimentabueno.ro.gov.br</a></li>
-                        <li><a href="https://wa.me/5569999304900" target="_blank"><i class="fab fa-whatsapp"></i> (69) 9 9930-4900</a></li>
+                        <li><a href="mailto:turismopbueno@gmail.com"><i class="fas fa-envelope"></i>turismopbueno@gmail.com</a></li>
+                        <li><a href="https://wa.me/5569999189138" target="_blank"><i class="fab fa-whatsapp"></i> (69) 99918-9138</a></li>
                         <li><a href="https://www.google.com/maps/place/Centro+Cultural+de+Pimenta+Bueno/@-11.6711365,-61.1879812,68m/data=!3m1!1e3!4m6!3m5!1s0x93b7e5d62caab84b:0xbb9a20a34af270ae!8m2!3d-11.6712736!4d-61.1880021!16s%2Fg%2F1tfqs0h9?entry=ttu&g_ep=EgoyMDI1MDgxMC4wIKXMDSoASAFQAw%3D%3D" target="_blank"><i class="fas fa-map-marker-alt"></i> Pimenta Bueno - RO</a></li>
                     </ul>
                 </div>
@@ -1044,7 +1095,13 @@
             const question = item.querySelector('.faq-question');
             
             question.addEventListener('click', () => {
-                item.classList.toggle('active');
+                const isActive = item.classList.contains('active');
+                // Fecha todos os outros itens que possam estar abertos
+                faqItems.forEach(i => i.classList.remove('active'));
+                // Se o item clicado não estava ativo, ele se torna ativo
+                if (!isActive) {
+                    item.classList.add('active');
+                }
             });
         });
         
@@ -1055,11 +1112,12 @@
                 
                 const targetId = this.getAttribute('href');
                 if(targetId === '#') return;
-                
+
+                const headerOffset = document.querySelector('header').offsetHeight;
                 const targetElement = document.querySelector(targetId);
                 if(targetElement) {
                     window.scrollTo({
-                        top: targetElement.offsetTop - 80,
+                        top: targetElement.offsetTop - headerOffset,
                         behavior: 'smooth'
                     });
                 }
@@ -1071,8 +1129,8 @@
         const navLinks = document.querySelector('.nav-links');
         
         mobileMenu.addEventListener('click', () => {
-            // Adiciona ou remove a classe 'active' para mostrar/ocultar o menu
-            navLinks.classList.toggle('active');
+            const isExpanded = navLinks.classList.toggle('active');
+            mobileMenu.setAttribute('aria-expanded', isExpanded);
         });
         
         // Close mobile menu when clicking a link
@@ -1081,6 +1139,7 @@
                 // Fecha o menu mobile se ele estiver aberto
                 if (navLinks.classList.contains('active')) {
                     navLinks.classList.remove('active');
+                    mobileMenu.setAttribute('aria-expanded', 'false');
                 }
             });
         });
